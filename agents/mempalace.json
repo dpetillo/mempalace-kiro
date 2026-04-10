@@ -1,0 +1,22 @@
+{
+  "name": "mempalace",
+  "description": "AI agent with persistent long-term memory via MemPalace",
+  "prompt": "You have access to MemPalace, a persistent memory system with 19 MCP tools. On session start, call mempalace_status to load the palace overview. Search the palace before answering questions about past work or decisions. Save important decisions, discoveries, and facts using mempalace_add_drawer with appropriate wing and hall classification.",
+  "tools": ["@builtin", "@mempalace"],
+  "allowedTools": ["@mempalace"],
+  "mcpServers": {
+    "mempalace": {
+      "command": "/home/derek/.local/share/pipx/venvs/mempalace/bin/python3",
+      "args": ["-m", "mempalace.mcp_server"]
+    }
+  },
+  "hooks": {
+    "stop": [
+      {
+        "command": "/home/derek/Dev/github/mempalace-kiro/hooks/mempalace-stop-hook.sh",
+        "description": "MemPalace auto-save checkpoint"
+      }
+    ]
+  },
+  "welcomeMessage": "MemPalace memory is active. I'll remember important decisions and context across sessions."
+}
