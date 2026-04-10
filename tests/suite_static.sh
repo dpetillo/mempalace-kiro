@@ -3,6 +3,7 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+POWER_DIR="$REPO_DIR/power"
 PASS=0; FAIL=0
 
 pass() { echo "  ✓ $1"; PASS=$((PASS+1)); }
@@ -11,8 +12,8 @@ fail() { echo "  ✗ $1"; FAIL=$((FAIL+1)); }
 echo "=== Suite: Static ==="
 
 # 1. POWER.md exists and has frontmatter
-if [ -f "$REPO_DIR/POWER.md" ]; then
-  if head -1 "$REPO_DIR/POWER.md" | grep -q '^---$'; then
+if [ -f "$POWER_DIR/POWER.md" ]; then
+  if head -1 "$POWER_DIR/POWER.md" | grep -q '^---$'; then
     pass "POWER.md has YAML frontmatter"
   else
     fail "POWER.md missing frontmatter delimiter"
@@ -23,7 +24,7 @@ fi
 
 # 2. Frontmatter has required fields
 for field in name displayName description keywords; do
-  if grep -q "^${field}:" "$REPO_DIR/POWER.md" 2>/dev/null; then
+  if grep -q "^${field}:" "$POWER_DIR/POWER.md" 2>/dev/null; then
     pass "POWER.md has '$field' field"
   else
     fail "POWER.md missing '$field' field"
@@ -31,8 +32,8 @@ for field in name displayName description keywords; do
 done
 
 # 3. mcp.json is valid JSON with mcpServers key
-if [ -f "$REPO_DIR/mcp.json" ]; then
-  if python3 -c "import json; d=json.load(open('$REPO_DIR/mcp.json')); assert 'mcpServers' in d" 2>/dev/null; then
+if [ -f "$POWER_DIR/mcp.json" ]; then
+  if python3 -c "import json; d=json.load(open('$POWER_DIR/mcp.json')); assert 'mcpServers' in d" 2>/dev/null; then
     pass "mcp.json is valid JSON with mcpServers"
   else
     fail "mcp.json invalid or missing mcpServers key"
@@ -43,8 +44,8 @@ fi
 
 # 4. Steering files referenced in POWER.md exist
 for f in mempalace-memory-protocol.md mempalace-aaak-spec.md mempalace-palace-architecture.md; do
-  if [ -f "$REPO_DIR/steering/$f" ]; then
-    if [ -s "$REPO_DIR/steering/$f" ]; then
+  if [ -f "$POWER_DIR/steering/$f" ]; then
+    if [ -s "$POWER_DIR/steering/$f" ]; then
       pass "steering/$f exists and is non-empty"
     else
       fail "steering/$f is empty"

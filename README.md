@@ -8,7 +8,7 @@ MemPalace stores your conversations verbatim in a local palace architecture (win
 
 1. Open Kiro IDE (0.7+)
 2. Go to Powers panel → **Add power from GitHub**
-3. Enter: `https://github.com/dpetillo/mempalace-kiro`
+3. Enter: `https://github.com/dpetillo/mempalace-kiro/tree/main/power`
 4. The Power installs and onboarding runs automatically
 
 When you mention memory, recall, or past decisions in conversation, Kiro activates the Power and loads the relevant steering files.
