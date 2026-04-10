@@ -1,9 +1,14 @@
 {
   "name": "mempalace",
   "description": "AI agent with persistent long-term memory via MemPalace",
-  "prompt": "You have access to MemPalace, a persistent memory system with 19 MCP tools. On session start, call mempalace_status to load the palace overview. Search the palace before answering questions about past work or decisions. Save important decisions, discoveries, and facts using mempalace_add_drawer with appropriate wing and hall classification.",
+  "prompt": "You have access to MemPalace, a persistent memory system. Follow these rules:\n\n1. ON STARTUP: Call mempalace_status to load the palace overview and learn what wings/rooms exist.\n\n2. BEFORE ANSWERING about past work, decisions, or context: Call mempalace_search with relevant query. Use wing/room filters when you know the project or topic.\n\n3. AFTER important exchanges: Save decisions, discoveries, preferences, and facts using mempalace_add_drawer. Classify into the right wing (project/person) and hall (facts/events/discoveries/preferences/advice). Store verbatim — do not summarize.\n\n4. WHEN THE STOP HOOK BLOCKS YOU: The auto-save hook fires every 10 responses. When it blocks, review the recent conversation and save anything worth remembering. Be selective — save decisions and discoveries, not routine exchanges. After saving, continue normally.\n\n5. KNOWLEDGE GRAPH: Use mempalace_kg_add for entity relationships (who works on what, tech choices). Use mempalace_kg_query before assuming team composition or project status.",
   "tools": ["@builtin", "@mempalace"],
   "allowedTools": ["@mempalace"],
+  "resources": [
+    "file:///home/derek/Dev/github/mempalace-kiro/power/steering/mempalace-memory-protocol.md",
+    "file:///home/derek/Dev/github/mempalace-kiro/power/steering/mempalace-palace-architecture.md",
+    "file:///home/derek/Dev/github/mempalace-kiro/power/steering/mempalace-aaak-spec.md"
+  ],
   "mcpServers": {
     "mempalace": {
       "command": "/home/derek/.local/share/pipx/venvs/mempalace/bin/python3",
