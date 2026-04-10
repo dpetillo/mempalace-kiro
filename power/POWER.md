@@ -23,11 +23,25 @@ If Python is not installed or below 3.9, **stop and ask the user to install Pyth
 
 ### Step 2: Install MemPalace
 
+On systems with externally-managed Python (Debian/Ubuntu), use pipx:
+
+```bash
+pipx install mempalace==3.1.0
+```
+
+On other systems, pip works:
+
 ```bash
 pip install mempalace==3.1.0
 ```
 
-This installs the MemPalace package with ChromaDB, SQLite, and Sentence Transformers dependencies. First install may take 2-3 minutes for the embedding model download (~80MB).
+After installing via pipx, the MCP server must be invoked using the pipx venv python. Find it with:
+
+```bash
+ls ~/.local/share/pipx/venvs/mempalace/bin/python3
+```
+
+If the MCP server fails to connect with `ENOENT` or `ModuleNotFoundError`, update the power's mcp.json command to use this absolute path.
 
 ### Step 3: Initialize the palace
 

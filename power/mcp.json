@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "mempalace": {
-      "command": "python3",
+      "command": "/home/derek/.local/share/pipx/venvs/mempalace/bin/python3",
       "args": ["-m", "mempalace.mcp_server"]
     }
   }
