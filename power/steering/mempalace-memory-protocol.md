@@ -47,12 +47,19 @@ Use `mempalace_kg_invalidate` when facts change — don't delete, mark as ended.
 
 ## Save Hook Behavior
 
-The Kiro stop hook periodically prompts you to save. When triggered:
-1. Review recent conversation for saveable content
-2. Classify into appropriate wing/hall
-3. Call `mempalace_add_drawer` for each distinct memory
-4. Call `mempalace_kg_add` for any entity relationships discovered
-5. Be selective — save decisions, discoveries, and facts, not routine exchanges
+A Kiro stop hook injects a save instruction into your context every 10 responses. When you see `[MemPalace Auto-Save]` in your context:
+
+1. **YOU MUST ACT ON THIS IMMEDIATELY** — this is not optional
+2. Review the recent conversation for saveable content
+3. Call `mempalace_check_duplicate` before filing
+4. Call `mempalace_add_drawer` for each distinct memory with:
+   - `wing`: the project or person name
+   - `hall`: one of facts, events, discoveries, preferences, advice
+   - `room`: the specific topic
+   - `content`: verbatim text from the conversation
+5. Call `mempalace_kg_add` for any entity relationships discovered
+6. Be selective — save decisions, discoveries, and facts, not routine exchanges
+7. After saving, confirm what you saved to the user
 
 ## Available MCP Tools
 
