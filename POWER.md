@@ -1,7 +1,8 @@
 ---
 name: "mempalace"
+version: "0.1.0"
 displayName: "MemPalace Persistent Memory"
-description: "Give your AI agent persistent long-term memory using MemPalace. Stores conversations verbatim in a local palace architecture (wings, rooms, halls) backed by ChromaDB and SQLite. 19 MCP tools for search, storage, knowledge graph, and agent diaries."
+description: "Give your AI agent persistent long-term memory using MemPalace. Stores conversations verbatim in a local palace architecture backed by ChromaDB and SQLite. 19 MCP tools for search, storage, knowledge graph, and agent diaries."
 keywords: ["memory", "remember", "recall", "context", "mempalace", "palace", "persistent memory", "conversation history", "long-term memory", "knowledge graph"]
 author: "dpetillo"
 ---
